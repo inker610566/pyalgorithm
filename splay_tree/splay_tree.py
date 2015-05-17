@@ -21,7 +21,6 @@ class SplayTree:
     def Right(self):
         return self.ch[1]
 
-
     def _rotate(self, lr):
         '''
             Apply rotation to self
@@ -42,8 +41,18 @@ class SplayTree:
             :Args:
              - rpath : list of node path from root to parent of self(not including self)
         '''
-        for p in reversed(rpath):
-            self._rotate(p.ch[0] == self)
+        while len(rpath) > 1:
+            d = rpath[-1].ch[0] == self
+            if d == (rpath[-2].ch[0] == rpath[-1].ch[0]):
+                rpath[-2]._rotate(not d)
+                rpath[-1]._rotate(not d)
+            else:
+                rpath[-1]._rotate(not d)
+                rpath[-1]._rotate(d)
+            rpath[-2:] = []
+
+        if rpath:
+            rpath[0]._rotate(rpath.ch[0] == self)
 
 
 
