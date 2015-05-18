@@ -53,7 +53,7 @@ class SplayTree:
                 p._rotate(d)
 
         if rpath:
-            rpath[0]._rotate(rpath.ch[0] == self)
+            rpath[0]._rotate(rpath[0].ch[0] == self)
 
 
 
