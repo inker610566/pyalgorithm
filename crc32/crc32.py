@@ -26,7 +26,7 @@ bt = ConstructCRC32ReverseTable()
 def crc32leakNbyte(ss, bytenum):
 	crc = ss ^ startxor
 	for _ in range(bytenum):
-		print hex(crc)
+		#print hex(crc)
 		crc = ((crc << 8) ^ rt[crc >> 24]) & 0xffffffff
 	return hex((~crc) & 0xffffffff)[2:].decode('hex')[::-1]
 
