@@ -37,17 +37,9 @@ class SplayTree:
         set_r(self, y, not lr)
         set_r(x, self, lr)
 
-
-    def _splay(self, rpath):
-        '''
-            Apply splay to self according to rpath
-
-            :Args:
-             - rpath : list of node path from root to parent of self(not including self)
-        '''
-        while len(rpath) > 1:
-            p, pp = rpath[-2:]
-            rpath[-2:] = []
+    def _splay(self):
+        while self.p and self.p.p:
+            p, pp = self.p, self.p.p
             d = p.ch[0] == self
             if d == (pp.ch[0] == p.ch[0]):
                 pp._rotate(not d)
@@ -56,8 +48,6 @@ class SplayTree:
                 p._rotate(not d)
                 p._rotate(d)
 
-        if rpath:
-            rpath[0]._rotate(rpath[0].ch[0] == self)
-
-
+        if self.p:
+            self.p._rotate(self.p.ch[0] == self)
 
