@@ -34,6 +34,7 @@ class SplayTree:
         x = self.ch[not lr]
         assert x
         y = x.ch[lr]
+        set_r(self.p, x, self.p != None and (self.p.ch[1] == self))
         set_r(self, y, not lr)
         set_r(x, self, lr)
 
