@@ -17,8 +17,6 @@ def KMP(s, p):
         return f
     p = p + '$' # guard char
     f = build_failure(p)
-    print p
-    print f
     # match
     j = -1
     ret = []
